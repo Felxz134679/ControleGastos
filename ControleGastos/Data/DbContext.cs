@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ControleGastos.Api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControleGastos.Api.Data
 {
@@ -12,6 +13,10 @@ namespace ControleGastos.Api.Data
         {
         }
 
-       
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Transacao> Transacoes { get; set; } 
+
+
     }
 }
