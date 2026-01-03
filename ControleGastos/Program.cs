@@ -1,4 +1,6 @@
 using ControleGastos.Api.Data;
+using ControleGastos.Api.Repositories;
+using ControleGastos.Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=controle_gastos.db"));
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+
+builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
 
 
 builder.Services.AddEndpointsApiExplorer();

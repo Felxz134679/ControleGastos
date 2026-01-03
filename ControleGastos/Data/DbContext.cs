@@ -13,9 +13,21 @@ namespace ControleGastos.Api.Data
         {
         }
 
+        //Tabelas do banco de dados
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Transacao> Transacoes { get; set; } 
+        public DbSet<Transacao> Transacoes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Transacao>()
+                .HasOne(t => t.Pessoa)
+                .WithMany(p => p.Transacoes)
+                .HasForeignKey(t => t.PessoaId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            base.OnModelCreating(modelBuilder);
+        }
 
 
     }
