@@ -4,6 +4,7 @@ using ControleGastos.Api.Models;
 using ControleGastos.Api.Repositores.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace ControleGastos.Api.Repositores
 {
     public class TransacaoRepository : ITransacaoRepository
@@ -53,12 +54,24 @@ namespace ControleGastos.Api.Repositores
             return transacao;
         }
 
-        public async Task<List<Transacao>> GetAllTransacaoAsync()
+        public async Task<List<TransacaoListDto>> GetAllTransacaoAsync()
         {
-            return await _context.Transacoes
-                .Include(t=> t.Pessoa)
-                .Include(t => t.Categoria)
-                .ToListAsync();
+            var transacoes = await _context.Transacoes
+            .Select(t => new TransacaoListDto
+            {
+                Id = t.Id,
+                Descricao = t.Descricao,
+                Valor = t.Valor,
+                Tipo = t.Tipo,
+                PessoaNome = t.Pessoa.Nome,
+                CategoriaDescricao = t.Categoria.Descricao
+            })
+            .ToListAsync();
+
+
+            return transacoes;
+
         }
+
     }
 }

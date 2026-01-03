@@ -6,6 +6,6 @@ namespace ControleGastos.Api.Repositores.Interfaces
     public interface ITransacaoRepository
     {
         Task<Transacao> CreateTransacaoAsync(TransacaoCreateDto dto);
-        Task<List<Transacao>> GetAllTransacaoAsync();
+        Task<List<TransacaoListDto>> GetAllTransacaoAsync();
     }
 }

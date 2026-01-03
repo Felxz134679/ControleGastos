@@ -22,7 +22,7 @@ namespace ControleGastos.Api.Controllers
             try
             {
                 var transacao = await _repository.CreateTransacaoAsync(dto);
-                return Created("", transacao);
+                return Created();
             }
             catch (Exception ex)
             {
@@ -35,6 +35,6 @@ namespace ControleGastos.Api.Controllers
         {
             var transacoes = await _repository.GetAllTransacaoAsync();
             return Ok(transacoes);
-        }
+        }      
     }
 }
