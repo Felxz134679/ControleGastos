@@ -1,4 +1,6 @@
 using ControleGastos.Api.Data;
+using ControleGastos.Api.Repositores;
+using ControleGastos.Api.Repositores.Interfaces;
 using ControleGastos.Api.Repositories;
 using ControleGastos.Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 
 builder.Services.AddScoped<IPessoaRepository, PessoaRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+
 
 
 builder.Services.AddEndpointsApiExplorer();
