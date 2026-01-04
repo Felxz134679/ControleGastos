@@ -1,8 +1,9 @@
 import { api } from "../api/api";
-import type { Transacao, TipoTransacao } from "../models/Transacao";
+import type { Transacao } from "../models/Transacao";
 
 export const getTransacoes = async (): Promise<Transacao[]> => {
   const response = await api.get<Transacao[]>("/Transacoes");
+  console.log(response)
   return response.data;
 };
 

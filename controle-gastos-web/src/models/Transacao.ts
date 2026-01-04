@@ -5,8 +5,7 @@ export interface Transacao {
   descricao: string;
   valor: number;
   tipo: TipoTransacao;
-  pessoaId: number;
-  categoriaId: number;
-  pessoa?: { nome: string };
-  categoria?: { descricao: string };
+  pessoaNome: string;
+  categoriaDescricao: string;
 }
+

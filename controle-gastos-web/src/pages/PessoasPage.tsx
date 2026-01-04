@@ -23,11 +23,20 @@ export default function PessoasPage() {
   };
 
   return (
-    <div className="page-container">
-      <h2>Pessoas</h2>
-      <PessoaList pessoas={pessoas} />
-      <h3>Nova Pessoa</h3>
-      <PessoaForm onSalvar={handleSalvar} />
+  <div className="page-container">
+    <h2>Pessoas</h2>
+
+    <div className="pessoas-layout">
+      <div className="pessoas-lista">
+        <PessoaList pessoas={pessoas} />
+      </div>
+
+      <div className="pessoas-formulario">
+        <h3>Nova Pessoa</h3>
+        <PessoaForm onSalvar={handleSalvar} />
+      </div>
     </div>
-  );
+  </div>
+);
+
 }

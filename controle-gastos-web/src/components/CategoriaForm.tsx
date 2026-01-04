@@ -20,15 +20,15 @@ export default function CategoriaForm({ onCreated }: Props) {
 
 
   const salvar = async () => {
-  console.log(descricao, finalidade);
+    console.log(descricao, finalidade);
 
-  await criarCategoria(descricao, finalidadeMap[finalidade]);
-  setDescricao("");
-  onCreated();
-};
+    await criarCategoria(descricao, finalidadeMap[finalidade]);
+    setDescricao("");
+    onCreated();
+   };
 
   return (
-    <div className="form-container">
+    <form className="pessoa-form" onSubmit={e => e.preventDefault()}>
       <input value={descricao} onChange={e => setDescricao(e.target.value)} placeholder="Descrição" />
      <select value={finalidade} onChange={e => setFinalidade(e.target.value as FinalidadeCategoria)}>
         <option value="Despesa">Despesa</option>
@@ -36,6 +36,6 @@ export default function CategoriaForm({ onCreated }: Props) {
         <option value="Ambas">Ambas</option>
         </select>
       <button onClick={salvar}>Salvar</button>
-    </div>
+    </form>
   );
 }

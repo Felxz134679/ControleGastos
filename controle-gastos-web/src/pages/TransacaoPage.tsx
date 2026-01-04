@@ -16,18 +16,46 @@ export default function TransacoesPage() {
   }, []);
 
   return (
-    <div>
+    <div className="page-container">
       <h2>Transações</h2>
-      <ul>
-        {transacoes.map(t => (
-          <li key={t.id}>
-            {t.descricao} - {t.valor.toFixed(2)} - {t.tipo} - {t.pessoa?.nome} - {t.categoria?.descricao}
-          </li>
-        ))}
-      </ul>
 
-      <h3>Nova Transação</h3>
-      <TransacaoForm onCreated={carregarTransacoes} />
+      <div className="transacoes-container">
+        {/* LISTA */}
+        <div className="transacoes-list">
+          {transacoes.length === 0 && (
+            <p>Nenhuma transação cadastrada.</p>
+          )}
+
+          {transacoes.map(t => (
+            <div className="transacao-card" key={t.id}>
+              <div className="transacao-linha">
+                <strong>{t.descricao}</strong>
+                <span
+                  className={
+                    t.tipo === "Receita"
+                      ? "valor receita"
+                      : "valor despesa"
+                  }
+                >
+                  R$ {t.valor.toFixed(2)}
+                </span>
+              </div>
+
+              <div className="transacao-detalhes">
+                <span><b>Pessoa:</b> {t.pessoaNome}</span>
+                <span><b>Categoria:</b> {t.categoriaDescricao}</span>
+                <span><b>Tipo:</b> {t.tipo}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* FORM */}
+        <div className="transacoes-form">
+          <h3>Nova Transação</h3>
+          <TransacaoForm onCreated={carregarTransacoes} />
+        </div>
+      </div>
     </div>
   );
 }

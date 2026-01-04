@@ -1,5 +1,5 @@
 import { api } from "../api/api";
-import type { Categoria, FinalidadeCategoria } from "../models/Categoria";
+import type { Categoria } from "../models/Categoria";
 
 export const getCategorias = async (): Promise<Categoria[]> => {
   const response = await api.get<Categoria[]>("/Categorias");

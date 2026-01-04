@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { criarTransacao } from "../services/transacaoService";
-import type { TipoTransacao, Transacao } from "../models/Transacao";
+import type { TipoTransacao } from "../models/Transacao";
 import { getPessoas } from "../services/pessoaService";
 import { getCategorias } from "../services/categoriaService";
 import type { Pessoa } from "../models/Pessoa";
@@ -51,35 +51,40 @@ export default function TransacaoForm({ onCreated }: Props) {
   });
 
   return (
-    <div className="form-container">
-      <input
-        placeholder="Descrição"
-        value={descricao}
-        onChange={e => setDescricao(e.target.value)}
-      />
-      <input
-        type="number"
-        placeholder="Valor"
-        value={valor}
-        onChange={e => setValor(Number(e.target.value))}
-      />
-      <select value={tipo} onChange={e => setTipo(e.target.value as TipoTransacao)}>
-        <option value="Despesa">Despesa</option>
-        <option value="Receita">Receita</option>
-      </select>
-      <select value={pessoaId} onChange={e => setPessoaId(Number(e.target.value))}>
-        <option value={0}>Selecione a pessoa</option>
-        {pessoas.map(p => (
-          <option key={p.id} value={p.id}>{p.nome}</option>
-        ))}
-      </select>
-      <select value={categoriaId} onChange={e => setCategoriaId(Number(e.target.value))}>
-        <option value={0}>Selecione a categoria</option>
-        {categoriasFiltradas.map(c => (
-          <option key={c.id} value={c.id}>{c.descricao}</option>
-        ))}
-      </select>
-      <button onClick={salvar}>Salvar</button>
-    </div>
+    <form className="form">
+        <input
+            placeholder="Descrição"
+            value={descricao}
+            onChange={e => setDescricao(e.target.value)}
+        />
+
+        <input
+            type="number"
+            placeholder="Valor"
+            value={valor}
+            onChange={e => setValor(Number(e.target.value))}
+        />
+
+        <select value={tipo} onChange={e => setTipo(e.target.value as TipoTransacao)}>
+            <option value="Despesa">Despesa</option>
+            <option value="Receita">Receita</option>
+        </select>
+
+        <select value={pessoaId} onChange={e => setPessoaId(Number(e.target.value))}>
+            <option value={0}>Selecione a pessoa</option>
+            {pessoas.map(p => (
+            <option key={p.id} value={p.id}>{p.nome}</option>
+            ))}
+        </select>
+
+        <select value={categoriaId} onChange={e => setCategoriaId(Number(e.target.value))}>
+            <option value={0}>Selecione a categoria</option>
+            {categoriasFiltradas.map(c => (
+            <option key={c.id} value={c.id}>{c.descricao}</option>
+            ))}
+        </select>
+
+        <button type="button" onClick={salvar}>Salvar</button>
+    </form>
   );
 }
