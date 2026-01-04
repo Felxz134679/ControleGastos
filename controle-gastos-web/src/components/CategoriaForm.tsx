@@ -20,7 +20,9 @@ export default function CategoriaForm({ onCreated }: Props) {
 
 
   const salvar = async () => {
-    console.log(descricao, finalidade);
+    
+     if(descricao == "")
+        return;
 
     await criarCategoria(descricao, finalidadeMap[finalidade]);
     setDescricao("");

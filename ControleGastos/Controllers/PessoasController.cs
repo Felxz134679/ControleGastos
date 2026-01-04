@@ -26,6 +26,8 @@ namespace ControleGastos.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Pessoa>>> GetAllPessoas()
         {
+
+
             var pessoas = await _repository.GetAllPessoasAsync();
             return Ok(pessoas);
         }

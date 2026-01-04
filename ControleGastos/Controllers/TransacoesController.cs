@@ -15,7 +15,9 @@ namespace ControleGastos.Api.Controllers
         {
             _repository = repository;
         }
-
+        /// <summary>
+        /// Cria uma transação
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> CreateTransacao(TransacaoCreateDto dto)
         {
@@ -29,7 +31,9 @@ namespace ControleGastos.Api.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        /// <summary>
+        /// Pega todas as transações feitas
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetAllTransacoes()
         {

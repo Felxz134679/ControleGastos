@@ -25,7 +25,9 @@ namespace ControleGastos.Api.Repositories
             await _context.SaveChangesAsync();
             return pessoa;
         }
-
+        /// <summary>
+        /// Primeiro eu encontro esta pessoa e depois eu deleto ela. Se tiver transações associadas, o EF Core ira exluir junto.
+        /// </summary>
         public async Task<bool> DeletePessoaAsync(int id)
         {
             var pessoa = await _context.Pessoas.FindAsync(id);

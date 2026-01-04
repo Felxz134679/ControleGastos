@@ -29,7 +29,7 @@ export default function CategoriasPage() {
               {categorias.map(c => (
                 <li key={c.id}>
                   <span>{c.descricao}</span>
-                  <span>{c.finalidade}</span>
+                  
                 </li>
               ))}
             </ul>

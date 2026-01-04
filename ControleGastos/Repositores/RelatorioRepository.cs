@@ -16,6 +16,9 @@ namespace ControleGastos.Api.Repositores
             _context = context;
         }
 
+        /// <summary>
+        /// Basicamente eu faço uma consulta agrupando por pessoa e somando receitas e despesas
+        /// </summary>
         public async Task<RelatorioPorPessoaDto> GetTotaisPorPessoaAsync()
         {
             var pessoas = await _context.Pessoas
@@ -46,7 +49,9 @@ namespace ControleGastos.Api.Repositores
             };
         }
 
-
+        /// <summary>
+        /// aqui eu faço uma consulta agrupando por categoria e somando receitas e despesas
+        /// </summary>
         public async Task<RelatorioPorCategoriaDto> GetTotaisPorCategoriaAsync()
         {
             var categorias = await _context.Categorias

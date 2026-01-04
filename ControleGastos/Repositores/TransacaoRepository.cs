@@ -5,6 +5,7 @@ using ControleGastos.Api.Repositores.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 
+
 namespace ControleGastos.Api.Repositores
 {
     public class TransacaoRepository : ITransacaoRepository
@@ -15,7 +16,9 @@ namespace ControleGastos.Api.Repositores
         {
             _context = context;
         }
-
+        /// <summary>
+        /// Ao criar uma transação ele valida algumas regras de negócio antes de salvar
+        /// </summary>
         public async Task<Transacao> CreateTransacaoAsync(TransacaoCreateDto dto)
         {
             var pessoa = await _context.Pessoas.FindAsync(dto.PessoaId);
@@ -56,6 +59,8 @@ namespace ControleGastos.Api.Repositores
 
         public async Task<List<TransacaoListDto>> GetAllTransacaoAsync()
         {
+
+            
             var transacoes = await _context.Transacoes
             .Select(t => new TransacaoListDto
             {

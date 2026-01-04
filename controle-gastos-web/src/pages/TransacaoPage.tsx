@@ -11,6 +11,19 @@ export default function TransacoesPage() {
     setTransacoes(dados);
   };
 
+    const getTipoDescricao = (tipo: number) => {
+      
+    switch (tipo) {
+        case 1:
+        return "Despesa";
+        case 2:
+        return "Receita";
+        default:
+        return "Ambas";
+    }
+    };
+
+
   useEffect(() => {
     carregarTransacoes();
   }, []);
@@ -30,13 +43,7 @@ export default function TransacoesPage() {
             <div className="transacao-card" key={t.id}>
               <div className="transacao-linha">
                 <strong>{t.descricao}</strong>
-                <span
-                  className={
-                    t.tipo === "Receita"
-                      ? "valor receita"
-                      : "valor despesa"
-                  }
-                >
+                <span>
                   R$ {t.valor.toFixed(2)}
                 </span>
               </div>
@@ -44,7 +51,10 @@ export default function TransacoesPage() {
               <div className="transacao-detalhes">
                 <span><b>Pessoa:</b> {t.pessoaNome}</span>
                 <span><b>Categoria:</b> {t.categoriaDescricao}</span>
-                <span><b>Tipo:</b> {t.tipo}</span>
+                <span>
+                   <b>Tipo:</b> {getTipoDescricao(Number(t.tipo))}
+                </span>
+
               </div>
             </div>
           ))}

@@ -18,153 +18,122 @@ export default function RelatoriosPage() {
   }, []);
 
   return (
-    <div className="page-container">
+    <div className="relatorios">
       <h2>Relatórios</h2>
 
-      {/* CARDS TOTAIS */}
-      {relatorioPessoa && (
-        <div className="cards-resumo">
-          <div className="card receita">
-            <span>Receitas</span>
-            <strong>R$ {relatorioPessoa.totalGeral.totalReceitas.toFixed(2)}</strong>
-          </div>
+    <div className="layout">
+        
+    
+        <div className="col-esquerda">
 
-          <div className="card despesa">
-            <span>Despesas</span>
-            <strong>R$ {relatorioPessoa.totalGeral.totalDespesas.toFixed(2)}</strong>
-          </div>
+        {relatorioPessoa && (
+            <div className="box">
+            <h3>Totais por Pessoa</h3>
 
-          <div className="card saldo">
-            <span>Saldo</span>
-            <strong>
-              R$ {relatorioPessoa.totalGeral.saldo.toFixed(2)}
-            </strong>
-          </div>
+            <div className="linha">
+                <span>Receitas</span>
+                <strong>{relatorioPessoa.totalGeral.totalReceitas.toFixed(2)}</strong>
+            </div>
+
+            <div className="linha">
+                <span>Despesas</span>
+                <strong>{relatorioPessoa.totalGeral.totalDespesas.toFixed(2)}</strong>
+            </div>
+
+            <div className="linha total">
+                <span>Saldo</span>
+                <strong>{relatorioPessoa.totalGeral.saldo.toFixed(2)}</strong>
+            </div>
+            </div>
+        )}
+
+        {relatorioCategoria && (
+            <div className="box">
+            <h3>Totais por Categoria</h3>
+
+            <div className="linha">
+                <span>Receitas</span>
+                <strong>{relatorioCategoria.totalGeral.totalReceitas.toFixed(2)}</strong>
+            </div>
+
+            <div className="linha">
+                <span>Despesas</span>
+                <strong>{relatorioCategoria.totalGeral.totalDespesas.toFixed(2)}</strong>
+            </div>
+
+            <div className="linha total">
+                <span>Saldo</span>
+                <strong>
+                {(
+                    relatorioCategoria.totalGeral.totalReceitas -
+                    relatorioCategoria.totalGeral.totalDespesas
+                ).toFixed(2)}
+                </strong>
+            </div>
+            </div>
+        )}
+
         </div>
-      )}
 
-      {/* RELATÓRIO POR PESSOA */}
-      {relatorioPessoa && (
+        {/* COLUNA DIREITA */}
+        <div className="col-direita">
 
+        {relatorioPessoa && (
+            <div className="box">
+            <h3>Relatório por Pessoa</h3>
 
-
-        <div className="box">
-
-
-
-            
-          <h3>Relatório por Pessoa</h3>
-
-          <table className="tabela">
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Receitas</th>
-                <th>Despesas</th>
-                <th>Saldo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {relatorioPessoa.pessoas.map(p => {
-                const saldo = p.totalReceitas - p.totalDespesas;
-
-                return (
-                  <tr key={p.pessoaId}>
+            <table>
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Receitas</th>
+                    <th>Despesas</th>
+                    <th>Saldo</th>
+                </tr>
+                </thead>
+                <tbody>
+                {relatorioPessoa.pessoas.map(p => (
+                    <tr key={p.pessoaId}>
                     <td>{p.nome}</td>
-                    <td className="receita">
-                      R$ {p.totalReceitas.toFixed(2)}
-                    </td>
-                    <td className="despesa">
-                      R$ {p.totalDespesas.toFixed(2)}
-                    </td>
-                    <td className={saldo >= 0 ? "receita" : "despesa"}>
-                      R$ {saldo.toFixed(2)}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      )}
+                    <td>{p.totalReceitas.toFixed(2)}</td>
+                    <td>{p.totalDespesas.toFixed(2)}</td>
+                    <td>{(p.totalReceitas - p.totalDespesas).toFixed(2)}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            </div>
+        )}
 
-      {/* RELATÓRIO POR CATEGORIA */}
-      {relatorioCategoria && (
+        {relatorioCategoria && (
+            <div className="box">
+            <h3>Relatório por Categoria</h3>
 
-
-
-        <div className="box">
-
-<div className="cards-resumo">
-  <div className="card receita">
-    <span>Total Receitas</span>
-    <strong>
-      R$ {relatorioCategoria.totalGeral.totalReceitas.toFixed(2)}
-    </strong>
-  </div>
-
-  <div className="card despesa">
-    <span>Total Despesas</span>
-    <strong>
-      R$ {relatorioCategoria.totalGeral.totalDespesas.toFixed(2)}
-    </strong>
-  </div>
-
-  <div className="card saldo">
-    <span>Saldo Geral</span>
-    <strong>
-      R$ {(
-        relatorioCategoria.totalGeral.totalReceitas -
-        relatorioCategoria.totalGeral.totalDespesas
-      ).toFixed(2)}
-    </strong>
-  </div>
-</div>
-
-          <h3>Relatório por Categoria</h3>
-
-          <table className="tabela">
-            <thead>
-              <tr>
-                <th>Categoria</th>
-                <th>Receitas</th>
-                <th>Despesas</th>
-                <th>Saldo</th>
-              </tr>
-            </thead>
-            <tbody>
-              {relatorioCategoria.categorias.map(c => {
-                const saldo = c.totalReceitas - c.totalDespesas;
-
-                return (
-                  <tr key={c.categoriaId}>
+            <table>
+                <thead>
+                <tr>
+                    <th>Categoria</th>
+                    <th>Receitas</th>
+                    <th>Despesas</th>
+                    <th>Saldo</th>
+                </tr>
+                </thead>
+                <tbody>
+                {relatorioCategoria.categorias.map(c => (
+                    <tr key={c.categoriaId}>
                     <td>{c.nome}</td>
-                    <td className="receita">
-                      R$ {c.totalReceitas.toFixed(2)}
-                    </td>
-                    <td className="despesa">
-                      R$ {c.totalDespesas.toFixed(2)}
-                    </td>
-                    <td className={saldo >= 0 ? "receita" : "despesa"}>
-                      R$ {saldo.toFixed(2)}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                    <td>{c.totalReceitas.toFixed(2)}</td>
+                    <td>{c.totalDespesas.toFixed(2)}</td>
+                    <td>{(c.totalReceitas - c.totalDespesas).toFixed(2)}</td>
+                    </tr>
+                ))}
+                </tbody>
+            </table>
+            </div>
+        )}
 
-
-          
         </div>
-
-
-
-
-
-
-      )}
     </div>
+</div>
   );
 }
-

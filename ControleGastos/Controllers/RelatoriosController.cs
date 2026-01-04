@@ -17,7 +17,9 @@ namespace ControleGastos.Api.Controllers
             _repository = repository;
         }
 
-
+        /// <summary>
+        /// Pega total de receitas, despeas e saldo de cada pessoa
+        /// </summary>
         [HttpGet("GetTotalPorPessoa")]
         public async Task<ActionResult<RelatorioPorPessoaDto>> GetTotaisPorPessoa()
         {
@@ -25,6 +27,10 @@ namespace ControleGastos.Api.Controllers
             return Ok(relatorio);
         }
 
+
+        /// <summary>
+        /// Pega total de receitas, despeas e saldo de cada categoria
+        /// </summary>
         [HttpGet("GetTotalPorCategoria")]
         public async Task<ActionResult<RelatorioPorCategoriaDto>> GetTotaisPorCategoria()
         {

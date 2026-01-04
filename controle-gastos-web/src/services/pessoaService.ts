@@ -15,3 +15,7 @@ export const criarPessoa = async (nome: string, idade: number) => {
   });
 };
 
+export const excluirPessoa = async (id: number) => {
+  await api.delete(`/Pessoas/${id}`);
+};
+
