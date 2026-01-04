@@ -1,7 +1,4 @@
-export enum TipoTransacao {
-  Despesa = 1,
-  Receita = 2
-}
+export type TipoTransacao  = "Despesa" | "Receita" | "Ambas";
 
 export interface Transacao {
   id: number;

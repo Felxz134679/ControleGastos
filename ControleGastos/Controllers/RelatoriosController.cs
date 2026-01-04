@@ -18,14 +18,14 @@ namespace ControleGastos.Api.Controllers
         }
 
 
-        [HttpGet("GetPorPessoa")]
+        [HttpGet("GetTotalPorPessoa")]
         public async Task<ActionResult<RelatorioPorPessoaDto>> GetTotaisPorPessoa()
         {
             var relatorio = await _repository.GetTotaisPorPessoaAsync();
             return Ok(relatorio);
         }
 
-        [HttpGet("GetPorCategoria")]
+        [HttpGet("GetTotalPorCategoria")]
         public async Task<ActionResult<RelatorioPorCategoriaDto>> GetTotaisPorCategoria()
         {
             var relatorio = await _repository.GetTotaisPorCategoriaAsync();
