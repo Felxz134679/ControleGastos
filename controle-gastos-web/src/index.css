@@ -1,0 +1,31 @@
+.page-container {
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.pessoa-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pessoa-form input {
+  flex: 1;
+  padding: 5px;
+}
+
+.pessoa-form button {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.pessoa-list {
+  list-style: none;
+  padding: 0;
+}
+
+.pessoa-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
